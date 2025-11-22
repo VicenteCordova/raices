@@ -27,7 +27,7 @@ class Carrito extends CI_Controller {
         $this->load->view('plantilla/footer');
     }
 
-    /** Solo admin (1) o vendedor (3) pueden operar ventas */
+    /** Solo admin (1) o vendedor (2) pueden operar ventas */
     private function canSell(): bool {
         $rolSesion = $this->session->userdata('rol');
         $idRolSesion = $this->session->userdata('IDrol');
@@ -36,7 +36,7 @@ class Carrito extends CI_Controller {
             $idRol = (int) $rolSesion;
         elseif (is_numeric($idRolSesion))
             $idRol = (int) $idRolSesion;
-        return in_array($idRol, [1, 3], true);
+        return in_array($idRol, [1, 2], true);
     }
 
     /** Agregar ítem desde Ventas (suma si existe el mismo SKU) */
