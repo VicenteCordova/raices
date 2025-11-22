@@ -13,7 +13,7 @@ if (is_numeric($rolSesion)) {
 }
 $rolStr = is_string($rolSesion) ? strtolower($rolSesion) : null;
 if (!$rolStr) {
-    $map = [1 => 'admin', 2 => 'usuario', 3 => 'vendedor', 4 => 'bodeguero'];
+    $map = [1 => 'admin', 2 => 'vendedor', 3 => 'bodeguero'];
     $rolStr = isset($map[$idRol]) ? $map[$idRol] : 'usuario';
 }
 $isAdmin = ($rolStr === 'admin');

@@ -72,7 +72,20 @@ class Login extends CI_Controller {
         // Obtener nombre del cargo según IDcargo
         $cargoNombre = isset($cargos[(int) $u->IDcargo]) ? $cargos[(int) $u->IDcargo] : '';
 
-        $rolNombre = ((int) $u->IDrol === 1) ? 'admin' : 'usuario';
+        // Normalizar nombre de rol para la sesión (se usa en vistas/controles de permisos)
+        switch ((int) $u->IDrol) {
+            case 1:
+                $rolNombre = 'admin';
+                break;
+            case 2:
+                $rolNombre = 'vendedor';
+                break;
+            case 3:
+                $rolNombre = 'bodeguero';
+                break;
+            default:
+                $rolNombre = 'usuario';
+        }
         // 🔐 Sesión con claves "oficiales" y "antiguas" para compatibilidad
         $this->session->set_userdata([
             'IDusuario' => (int) $u->IDusuario,
